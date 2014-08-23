@@ -230,7 +230,7 @@ int main()
   }
 
   // プログラムオブジェクトの作成
-  const GLuint program(ggLoadShader("simple.vert", "back.frag"));
+  const GLuint program(ggLoadShader("simple.vert", "distance.frag"));
 
   // uniform 変数のインデックスの検索（見つからなければ -1）
   const GLuint image0Loc(glGetUniformLocation(program, "image0"));
