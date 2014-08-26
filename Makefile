@@ -1,4 +1,4 @@
-TARGET	= image2
+TARGET	= image3
 SOURCES	= $(wildcard *.cpp)
 HEADERS	= $(wildcard *.h)
 OBJECTS	= $(patsubst %.cpp,%.o,$(SOURCES))

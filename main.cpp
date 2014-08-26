@@ -230,12 +230,15 @@ int main()
   }
 
   // プログラムオブジェクトの作成
-  const GLuint program(ggLoadShader("simple.vert", "distance.frag"));
+  const GLuint program(ggLoadShader("simple.vert", "back.frag"));
 
   // uniform 変数のインデックスの検索（見つからなければ -1）
   const GLuint image0Loc(glGetUniformLocation(program, "image0"));
   const GLuint image1Loc(glGetUniformLocation(program, "image1"));
 
+  // テクスチャの格納先
+  int select = 0;
+  
   // ウィンドウが開いている間繰り返す
   while (window.shouldClose() == GL_FALSE)
   {
@@ -248,7 +251,7 @@ int main()
       // 切り出した画像をテクスチャに転送する
       cv::Mat flipped;
       cv::flip(frame, flipped, 0);
-      glBindTexture(GL_TEXTURE_RECTANGLE, image[window.getKey() == GLFW_KEY_SPACE ? 1 : 0]);
+      glBindTexture(GL_TEXTURE_RECTANGLE, image[select = 1 - select]);
       glTexSubImage2D(GL_TEXTURE_RECTANGLE, 0, 0, 0, frame.cols, flipped.rows, GL_BGR, GL_UNSIGNED_BYTE, flipped.data);
     }
 
